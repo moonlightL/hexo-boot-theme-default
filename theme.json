@@ -1,0 +1,26 @@
+{
+  "name": "default",
+  "remark": "默认主题",
+  "extension": [
+    {
+      "key": "pageSize",
+      "value": "9",
+      "type": "input",
+      "label": "页面大小"
+    },
+    {
+      "key": "commentShowType",
+      "value": "singleRow",
+      "type": "select",
+      "option": "singleRow,multiRow",
+      "label": "评论列表展示"
+    },
+    {
+      "key": "pattern",
+      "value": "light",
+      "type": "select",
+      "option": "light,dark",
+      "label": "主题模式"
+    }
+  ]
+}
