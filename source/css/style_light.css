@@ -159,13 +159,21 @@ strong {
 .image-banner {
     position: relative;
     box-shadow: 0 0 36px #e5e5e8;
-    margin-bottom: 18px;
+    margin-bottom: 22px;
 }
 
 .image-banner .image-content {
     position: relative;
     width: 100%;
     height: 274px;
+}
+
+.image-banner .image-content::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -5px 36px 16px #efebeb;
 }
 
 .image-banner .image-content canvas {
@@ -199,6 +207,7 @@ strong {
 .image-banner .word_1,.image-banner .word_2 {
     position: absolute;
     font-size: 20px;
+    text-shadow: 0 1px 10px #000;
 }
 
 .image-banner .word_1 {
@@ -212,11 +221,11 @@ strong {
 }
 
 .ml-content {
-  position: relative;
-  background-color: #fff;
-  padding: 2em;
-  margin-bottom: 1em;
-  box-shadow: 0 0 5px #e5e5e8;
+    position: relative;
+    background-color: #fff;
+    padding: 2em;
+    margin-bottom: 1em;
+    box-shadow: 0 1px 14px 1px #e8e9ea;
 }
 
 .ml-content-title {
@@ -227,11 +236,13 @@ strong {
   margin-bottom: 2em;
 }
 
-.ml-content .post-info {
+.post-info {
     transition: all 1s;
     border:1px solid #eee;
     max-height: 400px;
     background: #fff;
+    margin-bottom: 22px;
+    box-shadow: 0 1px 14px 1px #e8e9ea;
 }
 
 .post-info .post-bg {
@@ -296,21 +307,21 @@ strong {
     font-weight: bold;
 }
 
-.ml-content .post-info:hover img.lazy {
+.post-info:hover img.lazy {
     transform: scale(1.5);
 }
 
-.ml-content .post-info:hover div.mask {
+.post-info:hover div.mask {
     display: block;
     opacity: .6;
 }
 
-.ml-content .post-info:hover div.category {
+.post-info:hover div.category {
     top:35%;
     opacity: 1;
 }
 
-.ml-content .post-info:hover div.tags {
+.post-info:hover div.tags {
     bottom:35%;
     opacity: 1;
 }
@@ -553,7 +564,7 @@ strong {
 
 .pagination-bar {
     text-align: center;
-    background: #fff;
+    margin-bottom: 22px;
 }
 
 .pagination-bar i {
@@ -605,28 +616,30 @@ strong {
   color: #fff;
 }
 
-.ml-content .footer-copyright {
-    height: 22px;
-    line-height: 22px;
+.footer-copyright {
+    height: 80px;
+    line-height: 80px;
     letter-spacing: 0;
+    background-color: #fff;
+    padding: 0 24px;
 }
 
-.ml-content .footer-copyright a{
+.footer-copyright a{
   display: inline-block;
   color: #6c757d;
   text-decoration:none;
 }
 
-.ml-content .footer-copyright a:hover{
+.footer-copyright a:hover{
   color: #37b1f3;
 }
 
-.ml-content .footer-copyright .contract-info {
+.footer-copyright .contract-info {
     display: inline-block;
     padding: 0;
 }
 
-.ml-content .footer-copyright .contract-info li {
+.footer-copyright .contract-info li {
     float: left;
     list-style: none;
     padding: 0 10px;
@@ -923,14 +936,10 @@ h4.friend-link-title {
     top: 24px;
 }
 
-.postContainer .post-header .post-read,
-.postContainer .post-header .post-comment {
+.postContainer .post-header .post-nums {
     position: absolute;
+    top: 6px;
     right: 0;
-}
-
-.postContainer .post-header .post-comment {
-    top: 24px;
 }
 
 .postContainer .highlight {
@@ -1101,7 +1110,7 @@ h4.friend-link-title {
 .shareContainer {
     position: relative;
     height: 50px;
-    margin-bottom: 8px;
+    margin: 20px auto;
 }
 
 .shareContainer .btns {
@@ -1180,7 +1189,7 @@ h4.friend-link-title {
      font-size: 13px;
   }
 
-  .ml-content .footer-copyright {
+  .footer-copyright {
       padding: .2em 0;
       text-align:center;
    }
@@ -1189,7 +1198,7 @@ h4.friend-link-title {
       height: 58px;
   }
 
-   .ml-content .footer-copyright span,.ml-content .footer-copyright a{
+   .footer-copyright span, .footer-copyright a{
        float: none !important;
        font-size: 12px;
    }
@@ -1206,8 +1215,9 @@ h4.friend-link-title {
         padding: 10px 12px;
     }
 
-    .ml-content .post-info {
-        max-height: 360px;
+    .post-info {
+        max-height: 370px;
+        background-color: #fff;
     }
 
     .navbar {
@@ -1227,7 +1237,9 @@ h4.friend-link-title {
     }
 
     .post-info .show-btn {
+        margin-top: 10px;
         padding: 6px 0;
+        height: 68px;
     }
 
     /** 归档 start **/
