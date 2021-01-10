@@ -2,14 +2,17 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{theme/default/layout}">
 
 <head>
-    <title th:text="${#servletContext.getAttribute('configMap')['blog_name']} + ' | 分类'"></title>
+    <title>分类 | [[${#servletContext.getAttribute('configMap')['blog_name']}]]</title>
 </head>
 <body>
 <div layout:fragment="content">
     <!-- 图片 -->
     <div class="image-banner" style="color: #fff">
         <div class="image-content"><img th:src="@{${prefix} + '/source/images/category.png'}" class="magic img-responsive" ></div>
-        <div class="descr"><a th:href="@{/}">首页</a>  /  <a href="javascript:void(0)">分类</a></div>
+        <div class="descr">
+            <a th:href="@{/}">首页  /  </a>
+            <a href="javascript:void(0)">分类</a>
+        </div>
         <div class="title">分类</div>
     </div>
 
@@ -20,6 +23,7 @@
                    <div class="category-item animate-box" data-animate-effect="fadeInUp">
                        <a th:href="@{'/categories/'+${category.name}+'/'}">
                            <img th:src="@{${category.coverUrl}}" alt="">
+                           <div class="mask"><span>[[${category.remark}]]</span></div>
                            <div class="descr">
                                [[${category.name}]]<span>([[${category.postNum}]])</span>
                            </div>

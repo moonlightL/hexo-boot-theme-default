@@ -1,8 +1,9 @@
 ;(function() {
-    let current_mode = "current_mode";
+    let base = "/theme";
+    let CURRENT_MODE = "current_mode";
 
     let checkTheme = function() {
-        let mode = sessionStorage.getItem(current_mode);
+        let mode = sessionStorage.getItem(CURRENT_MODE);
         if (!mode) {
             let hour = (new Date()).getHours();
             mode = (hour >= 6 && hour < 18 ? "light" : "dark");
@@ -10,9 +11,9 @@
         $("html").attr("mode", mode);
 
         if (mode === "light") {
-            $("#modeBtn").html("<i class='fa fa-moon-o'></i>");
+            $(".mode-container").html("<div id='modeBtn' class='mode'><i class='fa fa-moon-o'></i></div>");
         } else {
-            $("#modeBtn").html("<i class='fa fa-sun-o'></i>");
+            $(".mode-container").html("<div id='modeBtn' class='mode'><i class='fa fa-sun-o'></i></div>");
         }
     };
 
@@ -20,7 +21,7 @@
         $("#modeBtn").on("click", function () {
             let $html = $("html");
             let mode = ($html.attr("mode") === "light" ? "dark" : "light");
-            sessionStorage.setItem(current_mode, mode);
+            sessionStorage.setItem(CURRENT_MODE, mode);
             $html.attr("mode", mode);
             if (mode === "light") {
                 $(this).html("<i class='fa fa-moon-o'></i>");
@@ -69,6 +70,14 @@
         });
     };
 
+    // 图片懒加载
+    let lazyImage = function() {
+        $("img.lazy").lazyload({
+            placeholder : base + "/default/source/images/loading.jpg",
+            effect: "fadeIn"
+        });
+    };
+
     // 滚动
     let contentWayPoint = function () {
         let i = 0;
@@ -81,11 +90,8 @@
                         let el = $(this);
                         setTimeout(function () {
                             let effect = el.data('animate-effect');
-                            if (effect) {
-                                el.addClass(effect + ' animated');
-                            } else {
-                                el.addClass('fadeInUp animated');
-                            }
+                            effect = effect || 'fadeInUp';
+                            el.addClass(effect + ' animated visible');
                             el.removeClass('item-animate');
                         }, k * 200, 'easeInOutExpo');
                     });
@@ -98,7 +104,7 @@
 
     let clickEffect = function() {
         let $container = $("#pageContainer");
-        $container.on("click",function(e) {
+        $container.on("click", function(e) {
             let $i = $('<b></b>').text('❤');
             let x = e.pageX, y = e.pageY;
             $i.css({
@@ -126,6 +132,7 @@
         changeMode();
         goBack();
         search();
+        lazyImage();
         circleMagic();
         contentWayPoint();
         clickEffect();

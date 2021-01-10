@@ -2,7 +2,7 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{theme/default/layout}">
 
 <head>
-    <title th:text="${#servletContext.getAttribute('configMap')['blog_name']} + ' | 关于'"></title>
+    <title>关于 | [[${#servletContext.getAttribute('configMap')['blog_name']}]]</title>
     <link rel="stylesheet" th:href="@{'/admin/assets/custom/jquery-comment/jquery-comment.css'}">
 </head>
 <body>
@@ -10,7 +10,10 @@
     <!-- 图片 -->
     <div class="image-banner" style="color: #fff">
         <div class="image-content"><img th:src="@{${prefix} + '/source/images/about.png'}" class="magic img-responsive" ></div>
-        <div class="descr"><a th:href="@{/}">首页</a>  /  <a th:href="@{/about/}">关于</a></div>
+        <div class="descr">
+            <a th:href="@{/}">首页  /  </a>
+            <a th:href="@{/about/}">关于</a>
+        </div>
         <div class="title">关于</div>
     </div>
 
