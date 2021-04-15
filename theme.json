@@ -3,6 +3,12 @@
   "remark": "默认主题",
   "extension": [
     {
+      "key": "version",
+      "value": "2.3",
+      "type": "input",
+      "label": "版本号"
+    },
+    {
       "key": "pageSize",
       "value": "9",
       "type": "input",
@@ -10,10 +16,31 @@
     },
     {
       "key": "useCDN",
-      "value": "true",
+      "value": "false",
       "type": "select",
       "option": "true,false",
       "label": "是否开启CDN"
+    },
+    {
+      "key": "PJAX",
+      "value": "true",
+      "type": "select",
+      "option": "true,false",
+      "label": "是否开启PJAX"
+    },
+    {
+      "key": "animated",
+      "value": "false",
+      "type": "select",
+      "option": "true,false",
+      "label": "是否开启动画"
+    },
+    {
+      "key": "mourn",
+      "value": "false",
+      "type": "select",
+      "option": "true,false",
+      "label": "是否开启哀悼"
     },
     {
       "key": "highlight",
