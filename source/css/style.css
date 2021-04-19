@@ -1,10 +1,12 @@
-/*@font-face{*/
-/*    font-family:'Play';*/
-/*    font-style:normal;*/
-/*    font-weight:400;*/
-/*    src:url('../fonts/Play.woff2') format('woff2');*/
-/*    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215*/
-/*}*/
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline } article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block } body {line-height: 1 } ol, ul {list-style: none } blockquote, q {quotes: none } blockquote:after, blockquote:before, q:after, q:before {content: ''; content: none } table {border-collapse: collapse; border-spacing: 0 }
+
+@font-face{
+    font-family:'Play';
+    font-style:normal;
+    font-weight:400;
+    src:url('../fonts/Play.woff2') format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215
+}
 
 @keyframes slowUp {
     0% {
@@ -51,55 +53,51 @@
 }
 
 :root[mode=light] {
-    --theme-color: #37b1f3;
-    --hover-color: #30a0dc;
+    --theme-color: #7dce94;
+    --hover-color: #7dce94;
     --blog-bg-color: #f0f2f5;
     --content-color: #fff;
     --text-color: #333;
     --text-hover-color: #fff;
-    --border-color: #37b1f3;
+    --border-color: #7dce94;
     --shadow-color: #e8e9ea;
     --shadow-hover-color: #d0cfcf;
-    --gutter-pre-bg-color: #eff2f3;
-    --code-pre-bg-color: #f7f7f7;
+    --pre-header-color: #e6ecf3;
+    --gutter-pre-bg-color: #eff2f5;
+    --code-pre-bg-color: #eff2f5;
+    --text-shadow-color: #e1dfdf;
     --brightness-value: brightness(1);
 }
 
 :root[mode=dark] {
-    --theme-color: #2f9064;
-    --hover-color: #20d6b2;
+    --theme-color: #ffc952;
+    --hover-color: #ffc952;
     --blog-bg-color: #202020;
     --content-color: #0e0f10;
     --text-color: #d8d8d8;
     --text-hover-color: #cbd6dc;
-    --border-color: #2f9064;
+    --border-color: #ffc952;
     --shadow-color: #333;
     --shadow-hover-color: #737171;
-    --gutter-pre-bg-color: #2d2d2d;
+    --pre-header-color: #323335;
+    --gutter-pre-bg-color: #1d1f21;
     --code-pre-bg-color: #1d1f21;
-    --brightness-value: brightness(0.7);
+    --text-shadow-color: #646363;
+    --brightness-value: brightness(0.9);
 }
 
-/*html {*/
-/*    filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);*/
-/*}*/
-
 body {
+    line-height: 21px;
     background-color: var(--blog-bg-color);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family: "Poppins", "Open sans", sans-serif;
+    font-family: "Play", "Open sans", sans-serif;
     font-size: 14px;
-    line-height: 21px;
-}
-
-p {
-    font-family: "Poppins", "Open sans", sans-serif;
-    line-height: 1.8em;
+    text-shadow: 0 1px 3px var(--text-shadow-color);
 }
 
 th, td, input, textarea {
-    font-family: "Poppins", "Open sans", sans-serif;
+    font-family: "Play", "Open sans", sans-serif;
     color: var(--text-color);
     background-color: var(--content-color);
     -webkit-font-smoothing: antialiased;
@@ -134,7 +132,7 @@ body::-webkit-scrollbar-thumb {
 /** 重置 bootstrap start  */
 
 a {
-    font-family: "Poppins", "Open sans", sans-serif;
+    font-family: "Play", "Open sans", sans-serif;
     color: var(--theme-color);
     text-decoration: none !important;
 }
@@ -165,8 +163,8 @@ strong {
 
 .btn-success {
     color: #fff;
-    background-color: #56c356;
-    border-color: #56c356;
+    background-color: var(--theme-color);
+    border-color: var(--theme-color);
 }
 
 .btn-danger {
@@ -258,8 +256,6 @@ strong {
 .navbar ul.menu > li > a {
     position: relative;
     z-index: 0;
-    /*color: var(--text-color) !important;*/
-    padding: 1.6rem;
 }
 
 .navbar ul.menu > li a:hover {
@@ -280,12 +276,11 @@ strong {
 .navbar ul.menu > li > ul.second-menu {
     position: absolute;
     width: 100%;
-    top: 52px;
+    top: 50px;
     left: 0;
     text-align: center;
     background: var(--content-color);
     box-shadow: 0 1px 7px 1px var(--shadow-color);
-    border-radius: .625rem 0;
     padding: 0;
     margin: 0;
     display: none;
@@ -295,22 +290,20 @@ strong {
     list-style-type: none;
 }
 
-.navbar ul.menu > li > ul.second-menu li {
-    padding: 4px 2px;
-}
-
-
 .navbar ul.menu > li > ul.second-menu a {
+    padding: .75rem;
     color: var(--text-color);
     display: block;
 }
 
-.navbar ul > li:hover {
+.navbar ul li:hover,
+.navbar ul.menu > li > ul.second-menu li:hover {
     background: var(--theme-color);
 }
 
-.navbar ul li:hover a {
-    color: #fff;
+.navbar ul > li:hover > a,
+.navbar ul.menu > li > ul.second-menu li:hover a {
+    color: #FFF !important;
 }
 
 .navbar-brand img {
@@ -767,7 +760,6 @@ strong {
     display: inline-block;
     width: 40px;
     height: 40px;
-    line-height: 26px;
     margin: 0 .5rem;
     padding: .75rem;
     position: relative;
@@ -899,6 +891,7 @@ span.effect {
     color: var(--text-color);
     font-style: normal;
     text-decoration:none;
+    font-size: 15px;
     transition: all .3s;
 }
 
@@ -993,15 +986,26 @@ span.effect {
 /** 友链 start  */
 
 h3.friend-link-title {
-    border-left: 3px solid var(--theme-color);
-    padding-left: 5px;
-    color: var(--text-color);
+    padding: 1rem;
+    font-size: 18px;
+    border-radius: 4px;
+    text-shadow: none;
+}
+
+h3.friend-link-title.tool {
+    border-left: 3px solid #428bca;
+    background: #eef7fa;
+}
+
+h3.friend-link-title.blogger {
+    border-left: 3px solid #f0ad4e;
+    background: #fdf8ea;
 }
 
 .friend-link-item {
     position: relative;
     width: 100%;
-    margin: 1.5rem 0;
+    margin: 2rem 0;
     padding: 1rem;
     transition: all .3s;
     border-radius: 4px;
@@ -1031,16 +1035,18 @@ h3.friend-link-title {
     position: absolute;
     width: 180px;
     height: 62px;
-    top: 5px;
+    top: 12px;
     left: 90px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 15px;
 }
 
 .friend-link-item .remark {
+    margin-top: 1rem;
     text-align: left;
-    color: var(--text-color)
+    color: var(--text-color);
 }
 
 /** 友链 end  */
@@ -1068,18 +1074,69 @@ h3.friend-link-title {
 }
 
 .post-content {
+    line-height: 2rem;
     text-align: left;
     font-size: 14px;
-    line-height: 1.6;
     width: 100%;
     background-color: var(--content-color);
     color: var(--text-color);
+    animation: slowUp 1s;
+}
+
+.post-content ol li,
+.post-content ul li {
+    position: relative;
+    font-size: 15px;
+}
+
+.post-content ol li {
+    counter-increment: list;
+}
+
+.post-content ol li::before {
+    content: counter(list);
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    float: left;
+    margin: 5px 12px 0 0;
+    color: #fff;
+    font-size: 12px;
+    font-style: normal;
+    background-color: #5aaefd;
+    border-radius: 50%;
+    text-align: center;
+    transition: all .5s;
+}
+
+.post-content ol li:hover::before {
+    transform: scale(1.1);
+}
+
+.post-content ul li::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin: 8px 12px 0 0;
+    color: #fff;
+    font-size: 12px;
+    font-style: normal;
+    border: 2px solid #5aaefd;
+    border-radius: 50%;
+    text-align: center;
+    transition: all .5s;
+}
+
+.post-content ul li:hover::before {
+    background-color: #5aaefd;
 }
 
 .post-content h2,
 .post-content h3,
 .post-content h4 {
     font-weight: 600;
+    margin: 1rem 0;
 }
 
 .post-content h2 {
@@ -1110,14 +1167,15 @@ h3.friend-link-title {
 }
 
 .post-content p, .post-content blockquote p {
-    font-size: 14px;
-    margin: 0 0 24px;
-    letter-spacing: 2px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 22px;
+    margin: 1rem auto;
 }
 
 .post-content p code {
-    margin-left: 5px;
-    margin-right: 4px;
+    margin: 0 4px;
+    padding: .2rem;
 }
 
 .post-content hr {
@@ -1177,13 +1235,54 @@ h3.friend-link-title {
 .postContainer .highlight {
     border-radius: 1px;
     font-family: "Nunito Sans",-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-    background-color: var(--code-pre-bg-color);
+    background-color: #000;
+    /*新加3行代码*/
+    position: relative;
+    padding-top: 32px;
+    box-shadow: 0 1px 8px 1px var(--shadow-color);
 }
 
-.postContainer .highlight table {
+.highlight .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    display: inline-block;
+    text-align: center;
+    width: 44px;
+    height: 22px;
+    padding: 2px;
+    color: #e1e1e1;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.highlight:hover .copy-btn {
+    opacity: 1;
+}
+
+.postContainer figure.highlight::before {
+    content: " ";
+    position: absolute;
+    border-radius: 50%;
+    background: #fc625d;
+    width: 12px;
+    height: 12px;
+    top: 12px;
+    left: 12px;
+    box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+    z-index: 2
+}
+
+.postContainer figure table {
     margin: 0;
-    width: auto;
+    width: 100%;
     border: none;
+    box-shadow: none!important;
+}
+
+.postContainer .highlight td.code {
+    width: 100%;
 }
 
 .postContainer pre, .highlight {
@@ -1239,25 +1338,35 @@ h3.friend-link-title {
     padding-right: 10px;
     color: #869194;
     text-align: right;
-    background-color: var(--gutter-pre-bg-color);
-    border-radius: 4px 0 0 4px;
+    background-color: #2d2d2d;
+    border-radius: 0;
 }
 
 .postContainer .highlight .code pre {
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    background-color: var(--code-pre-bg-color);
-    border-radius: 0 4px 4px 0;
+    background-color: #2d2d2d;
+    border-radius: 0;
 }
 
 .postContainer .highlight .hljs {
     font-size: 14px;
-    color: #6c757d;
     font-family: "Nunito Sans",-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     display: inline !important;
     background: none !important;
     padding: 0 !important;
+    text-shadow: none;
+}
+
+.postContainer table {
+    margin: 1rem 0;
+    box-shadow: 0 1px 10px 1px var(--shadow-color);
+}
+
+.postContainer table th {
+    background: #4373ca;
+    color: #fff
 }
 
 .postContainer .weChat-official-accounts {
@@ -1272,14 +1381,14 @@ h3.friend-link-title {
     object-fit: cover;
 }
 
-.postContainer .reward-img-area {
-    margin-top: 32px;
-}
-
 .postContainer .reward {
     margin: 12px 0;
     padding: 10px 0;
     color: var(--text-color);
+}
+
+.postContainer .reward p {
+    margin: 1rem auto;
 }
 
 .postContainer .reward .reward-img {
@@ -1299,10 +1408,16 @@ h3.friend-link-title {
 .post-copyright {
     list-style: none;
     padding: 0;
+    text-shadow: none;
+}
+
+.post-copyright li {
+    margin: .3rem 0;
 }
 
 .post-other-info {
     padding:2em 0;
+    text-shadow: none;
 }
 
 .post-content a, .post-copyright a,.post-other-info a{
@@ -1313,6 +1428,7 @@ h3.friend-link-title {
     display: inline-block;
     transition: all .3s;
     word-break: break-all;
+    text-shadow: none;
 }
 
 .post-content a:hover,
@@ -1407,6 +1523,7 @@ h3.friend-link-title {
 .alert-info .alert-link {
     color: var(--theme-color) !important;
     word-break: break-all;
+    text-shadow: none;
 }
 
 /** 文章页 end */
@@ -1886,6 +2003,7 @@ h3.friend-link-title {
 
 .comment-data-body .comment-data-body-btns .emoji-container .emoji-container-btn {
     margin-top: 16px !important;
+    font-size: 1.25rem !important;
 }
 
 .comment-data-body .comment-data-body-btns .input-container {
@@ -1991,7 +2109,7 @@ h3.friend-link-title {
 /** 目录 start **/
 .toc-nav li.active:before {
     background-color: var(--theme-color);
-    border: 4px solid #cbf9f5;
+    border: 4px solid #fff;
 }
 
 .toc-nav li a {
@@ -2056,4 +2174,105 @@ h3.friend-link-title {
 
 #animate {
     z-index: -1!important;
+}
+
+div.note {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-family: "FontAwesome";
+    text-shadow: none;
+}
+
+div.note:not(.no-icon) {
+    padding-left: 3rem;
+}
+
+div.note.note-success {
+    position: relative;
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    border-left: 3px solid #3c763d;
+    box-shadow: 0 1px 3px 1px #d6e9c6;
+}
+
+div.note.note-success a {
+    color: #3c763d !important;
+}
+
+div.note.note-success:not(.no-icon)::before {
+    position: absolute;
+    content: "\f058";
+    top: 1rem;
+    left: 1rem;
+    width: 32px;
+    height: 32px;
+}
+
+div.note.note-info {
+    position: relative;
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    border-left: 3px solid #31708f;
+    box-shadow: 0 1px 3px 1px #bce8f1;
+}
+
+div.note.note-info a {
+    color: #31708f;
+}
+
+div.note.note-info:not(.no-icon)::before {
+    position: absolute;
+    content: "\f06c";
+    top: 1rem;
+    left: 1rem;
+    width: 32px;
+    height: 32px;
+}
+
+div.note.note-warning {
+    position: relative;
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    border-left: 3px solid #8a6d3b;
+    box-shadow: 0 1px 3px 1px #faebcc;
+}
+
+div.note.note-warning a {
+    color: #8a6d3b;
+}
+
+div.note.note-warning:not(.no-icon)::before {
+    position: absolute;
+    content: "\f06a";
+    top: 1rem;
+    left: 1rem;
+    width: 32px;
+    height: 32px;
+}
+
+div.note.note-danger {
+    position: relative;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    border-left: 3px solid #a94442;
+    box-shadow: 0 1px 3px 1px #ebccd1;
+}
+
+div.note.note-danger a {
+    color: #a94442;
+}
+
+div.note.note-danger:not(.no-icon)::before {
+    position: absolute;
+    content: "\f057";
+    top: 1rem;
+    left: 1rem;
+    width: 32px;
+    height: 32px;
 }
