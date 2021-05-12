@@ -41,31 +41,33 @@
             <div id="postContainer" class="postContainer animated fadeIn">
                 <header class="post-header">
                     <div class="blogger-info">
-                        <img class="hidden-xs" th:src="@{${#strings.isEmpty(#servletContext.getAttribute('configMap')['logo_url']) != true ? #servletContext.getAttribute('configMap')['logo_url'] : prefix + '/source/images/logo.png'}}">
-                        <span class="blog-author"><i class="fa fa-user-o"></i> [[${#servletContext.getAttribute('configMap')['blog_author']}]]</span>
-                        <span class="post-date"><i class="fa fa-calendar"></i> [[${post.year} + ' 年 ' + ${post.month} + ' 月 ' + ${post.day} + ' 日']]</span>
+                        <img class="hidden-xs" th:src="@{${#strings.isEmpty(#servletContext.getAttribute('configMap')['blog_avatar']) != true ? #servletContext.getAttribute('configMap')['blog_avatar'] :
+                        (#strings.isEmpty(#servletContext.getAttribute('configMap')['logo_url']) !=true ? #servletContext.getAttribute('configMap')['logo_url'] : prefix + '/source/images/logo.png')}}">
+                        <span class="blog-author">😊 [[${#servletContext.getAttribute('configMap')['blog_author']}]]</span>
+                        <span class="post-date">📅 [[${post.year} + ' 年 ' + ${post.month} + ' 月 ' + ${post.day} + ' 日']]</span>
                         <div class="post-nums">
-                            <span><i class="fa fa-eye"></i> [[${post.readNum}]]</span>&nbsp;&nbsp;
-                            <span><i class="fa fa-comments-o"></i> [[${post.commentNum}]]</span>
+                            <span>🔥 [[${post.readNum}]]</span>&nbsp;&nbsp;
+                            <span>💬 [[${post.commentNum}]]</span>
                         </div>
                     </div>
                 </header>
                 <div class="alert alert-danger" th:if="${post.reprint == true}">
                     <ul class="post-copyright">
                         <li>
-                            <strong>原作者:</strong> <b>[[${post.author}]]</b>
+                            <strong>原作者:</strong> <b> [[${post.author}]]</b>
                         </li>
                         <li>
-                            <strong>原文链接:</strong> <a class="alert-link" th:href="@{${post.reprintLink}}" target="_blank" th:text="${post.reprintLink}"></a>
+                            <strong>原文链接:</strong>&nbsp;<a class="alert-link" th:href="@{${post.reprintLink}}" target="_blank" th:text="${post.reprintLink}"></a>
                         </li>
                     </ul>
                 </div>
-                <div id="post-content" class="post-content" th:utext="${md.md2html(post.id, post.content, 2)}"></div>
+
+                <div id="post-content" class="post-content" th:utext="${post.contentHtml}"></div>
 
                 <div id="share" class="shareContainer">
                     <div class="btns">
                         <button type="button" class="btn btn-success" id="priseBtn"><i class="fa fa-thumbs-o-up"></i> &nbsp;<span id="prizeCount">[[${post.praiseNum}]]</span></button>
-                        <button type="button" class="btn btn-default" id="shareOpenBtn" style="margin-left: .5rem;"><i class="fa fa-share-square-o"></i> 分享</button>
+                        <button type="button" class="btn btn-default" id="shareOpenBtn" style="margin-left: 1rem;"><i class="fa fa-share-square-o"></i> 分享</button>
                     </div>
                     <div id="shareBtns" class="social-share" data-initialized="true">
                         <a href="#" class="social-share-icon icon-weibo"></a>
@@ -112,13 +114,13 @@
                 <div class="alert alert-info" role="alert">
                     <ul class="post-copyright">
                         <li>
-                            <strong><i class="fa fa-user-o"></i> 本文作者:</strong> <b> [[${#servletContext.getAttribute('configMap')['blog_author']}]]</b>
+                            <strong>本文作者:</strong> <b> [[${#servletContext.getAttribute('configMap')['blog_author']}]]</b>
                         </li>
                         <li>
-                            <strong><i class="fa fa-link"></i> 本文链接:</strong>&nbsp;<a id="shareUrl" class="alert-link" th:href="@{${#servletContext.getAttribute('configMap')['home_page']} + '/'+${post.link}}" target="_blank" th:text="${#servletContext.getAttribute('configMap')['home_page']+'/'+ post.link}"></a>
+                            <strong>本文链接:</strong>&nbsp;<a id="shareUrl" class="alert-link" th:href="@{${#servletContext.getAttribute('configMap')['home_page']} + '/'+${post.link}}" target="_blank" th:text="${#servletContext.getAttribute('configMap')['home_page']+'/'+ post.link}"></a>
                         </li>
                         <li>
-                            <strong><i class="fa fa-copyright"></i> 版权声明:</strong>  本博客所有文章除特别声明外均为原创，采用 <a th:href="@{${#servletContext.getAttribute('configMap')['license_url']}}" class="alert-link" target="_blank" th:text="${#servletContext.getAttribute('configMap')['license']}"></a> 许可协议。转载请在文章开头明显位置注明原文链接和作者等相关信息，明确指出修改（如有），并通过 E-mail 等方式告知，谢谢合作！
+                            <strong>版权声明:</strong> 本博客所有文章除特别声明外均为原创，采用 <a th:href="@{${#servletContext.getAttribute('configMap')['license_url']}}" class="alert-link" target="_blank" th:text="${#servletContext.getAttribute('configMap')['license']}"></a> 许可协议。转载请在文章开头明显位置注明原文链接和作者等相关信息，明确指出修改（如有），并通过 E-mail 等方式告知，谢谢合作！
                         </li>
                     </ul>
                 </div>

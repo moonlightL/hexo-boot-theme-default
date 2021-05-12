@@ -14,8 +14,6 @@
 </div>
 
 <div th:fragment="link">
-    <link rel="dns-prefetch" th:href="@{'//fonts.googleapis.com'}">
-    <link rel="dns-prefetch" th:href="@{'//fonts.loli.net/css'}">
     <link rel="dns-prefetch" th:href="@{'//cdn.jsdelivr.net'}">
     <link rel="shortcut icon" th:href="@{${#servletContext.getAttribute('configMap')['favicon_url']}}"/>
 <!--    <link th:href="@{'https://fonts.loli.net/css?family=Poppins:400,500,600'}" rel="stylesheet">-->
@@ -30,7 +28,7 @@
     <link rel="stylesheet" th:href="@{${baseLink} + '/source/js/autoToc/jquery.autoToc.css'}"/>
     <link rel="stylesheet" th:href="@{${baseLink} + '/source/js/overshare/css/share.min.css'}"/>
     <link rel="stylesheet" th:href="@{${baseLink} + '/source/js/jquery-comment/jquery-comment.css'}"/>
-    <link rel="stylesheet" th:href="@{${prefix} + '/source/css/style.css?v=' + ${activeTheme.configMap['version']}}"/>
+    <link rel="stylesheet" th:href="@{${prefix} + '/source/css/app.css?v=' + ${activeTheme.configMap['version']}}"/>
     <style th:if="${activeTheme.configMap['mourn'] == 'true'}">
         #animate,.footer-copyright,.content,.options,#nprogress .bar, #nprogress .spinner-icon{
             filter: grayscale(1);
@@ -114,6 +112,7 @@
         let version = [[${activeTheme.configMap['version']}]];
         let baseLink = [[${baseLink}]];
         let openPjax = [[${activeTheme.configMap['PJAX']}]];
+        let editorType = [[${#servletContext.getAttribute('configMap')['editor_type']}]];
     </script>
     <script type='text/javascript' th:src="@{${baseLink} + '/source/js/plugins.js'}"></script>
     <script type='text/javascript' th:src="@{${baseLink} + '/source/js/jquery-comment/jquery.cookie.js'}"></script>
@@ -121,7 +120,6 @@
     <script type='text/javascript' th:src="@{${baseLink} + '/source/css/bootstrap/js/bootstrap.min.js'}"></script>
     <script type='text/javascript' th:src="@{${baseLink} + '/source/js/fancybox/jquery.fancybox.min.js'}"></script>
     <script type='text/javascript' th:src="@{${baseLink} + '/source/js/layer/layer.js'}"></script>
-    <script type='text/javascript' th:src="@{'https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js'}"></script>
     <script type='text/javascript' th:src="@{${prefix} + '/source/js/app.js?v=' + ${activeTheme.configMap['version']}}"></script>
     [(${#servletContext.getAttribute('configMap')['script_code']})]
 </div>

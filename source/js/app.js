@@ -198,7 +198,6 @@
                 $("#tocContainer").autoToc({offsetTop: 520});
             });
 
-
             // 点赞
             $("#priseBtn").on("click",function () {
                 if (sessionStorage.getItem("hasPrize" + postId)) {
@@ -243,25 +242,6 @@
                 initComment(window.postId, window.canComment);
             });
 
-            let $highlightArr = $(".highlight");
-            $highlightArr.each(function(index, domEle) {
-                let $highlight = $(domEle);
-                let $table = $highlight.find("table");
-                let copyBtn = $("<span class='copy-btn'>复制</span>");
-                $highlight.append(copyBtn);
-                let clipboard = new ClipboardJS(copyBtn.get(0), {
-                    text: function(trigger) {
-                        let html = $table.find("td.code pre").html();
-                        html = html.replace(/<br>/g, "\r\n");
-                        return $(html).text();
-                    }
-                });
-
-                clipboard.on('success', function(e) {
-                    layer.msg("复制成功");
-                    e.clearSelection();
-                });
-            });
         }
     };
 
@@ -290,6 +270,7 @@
             $target.parent("li").addClass("active");
             NProgress.done();
         });
+        $(document).on('pjax:end', function() { loadLazy(); contentWayPoint(); });
     };
 
     $(function() {
