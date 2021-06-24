@@ -7,10 +7,10 @@
                 js: baseLink + "/source/js/APlayer/APlayer.min.js"
             },
             about: {
-                js: baseLink + "/source/js/about.js"
+                js: baseLink + "/source/js/about.js?v=" + version
             },
             detail: {
-                js: baseLink + "/source/js/detail.js"
+                js: baseLink + "/source/js/detail.js?v=" + version
             },
             highlight: {
                 js: baseLink + "/source/js/highlightjs/highlight.pack.js"
@@ -119,7 +119,7 @@
                             container: $aplayer.get(0),
                             fixed: true,
                             listFolded: true,
-                            listMaxHeight: 90,
+                            listMaxHeight: "120px",
                             autoplay: true,
                             audio: resp.data
                         });
@@ -200,7 +200,8 @@
 
             // 点赞
             $("#priseBtn").on("click",function () {
-                if (sessionStorage.getItem("hasPrize" + postId)) {
+                let key = "post-hasPrize" + postId;
+                if (sessionStorage.getItem(key)) {
                     layer.msg("已点赞");
                     return;
                 }
@@ -208,7 +209,7 @@
                 $.post("/praisePost/" + postId, null, function (resp) {
                     if (resp.success) {
                         $("#prizeCount").text(resp.data);
-                        sessionStorage.setItem("hasPrize" + postId, "y");
+                        sessionStorage.setItem(key, "y");
                     }
                 },"json");
 
@@ -254,6 +255,31 @@
         }
     };
 
+    const dynamicEvent = function() {
+        let $dynamic = $("#dynamic-content");
+        if ($dynamic.length > 0) {
+            $(".praise").off("click").on("click",function () {
+                let that = this;
+                let id = $(this).data("id");
+                let key = "dynamic-hasPrize" + id;
+                if (sessionStorage.getItem(key)) {
+                    layer.msg("已点赞");
+                    return;
+                }
+
+                $.post("/praiseDynamic/" + id, null, function (resp) {
+                    if (resp.success) {
+                        $(that).find(".praise-num").text(resp.data);
+                        $(that).find(".fa").css("color", "red");
+                        sessionStorage.setItem(key, "y");
+                        layer.msg("点赞成功");
+                    }
+                },"json");
+
+            });
+        }
+    };
+
     const pjaxEvent = function() {
         $(document).pjax('a[data-pjax]', '#wrap', {fragment: '#wrap', timeout: 8000});
         $(document).on('pjax:send', function() { NProgress.start();});
@@ -261,6 +287,7 @@
             loadLazy();
             circleMagic();
             contentWayPoint();
+            dynamicEvent();
             postEvent();
             aboutEvent();
             let $navBar = $("#navbar");
@@ -279,6 +306,7 @@
         circleMagic();
         loadLazy();
         contentWayPoint();
+        dynamicEvent();
         postEvent();
         aboutEvent();
         if (openPjax === "true") {
