@@ -72,7 +72,7 @@
 
         $("#modal-iframe").iziModal({
             iframe: true,
-            headerColor: "rgb(76, 175, 80)",
+            headerColor: "rgb(143,171,187)",
             title: '<i class="fa fa-search"></i> 站内搜索' ,
             width: 620,
             iframeHeight: 360,
@@ -175,6 +175,20 @@
         });
     };
 
+    const runCodeEvent = function() {
+        $(".run-code").off("click").on("click", function() {
+            let $btn = $(this);
+            let html = $btn.prev("figure").find("td.code pre").html();
+            html = html.replace(/<br>/g, "\r\n");
+            let codeContent = $(html).text();
+            let childWin = window.open("", "_blank", "");
+            childWin.document.open("text/html", "replace");
+            childWin.opener = null;
+            childWin.document.write(codeContent);
+            childWin.document.close()
+        });
+    };
+
     const postEvent = function() {
         let $detail = $("#post-content");
         if ($detail.length > 0) {
@@ -184,16 +198,19 @@
                 });
             });
 
-            let $head = $('head');
             // 目录
             let Toc = APP.plugins.toc;
-            $head.append('<link href="' + Toc.css + '" rel="stylesheet" type="text/css" />');
+            let $head = $('head');
+            if ($head.find("#toc-css").length == 0) {
+                $head.append('<link id="toc-css" href="' + Toc.css + '" rel="stylesheet" type="text/css" />');
+            }
+
             $.getScript(Toc.js, function () {
                 $("#tocContainer").autoToc({offsetTop: 520});
             });
 
             // 点赞
-            $("#priseBtn").on("click",function () {
+            $("#priseBtn").off("click").on("click",function () {
                 let postId = $(this).data("id");
                 let key = "post-hasPrize" + postId;
                 if (sessionStorage.getItem(key)) {
@@ -214,13 +231,7 @@
             // 打赏
             $("#showRewardImg").on("click", function () {
                 let rewardImgArea = $("#rewardImgArea");
-                if (rewardImgArea.hasClass("hide")) {
-                    rewardImgArea.removeClass("hide");
-                    rewardImgArea.slideDown("slow");
-                } else {
-                    rewardImgArea.addClass("hide");
-                    rewardImgArea.slideUp("slow");
-                }
+                rewardImgArea.toggleClass("hide");
             });
 
             // 分享
@@ -234,6 +245,8 @@
                     }
                 });
             });
+
+            runCodeEvent();
         }
     };
 
@@ -288,7 +301,7 @@
         contentWayPoint();
         dynamicEvent();
         postEvent();
-        if (openPjax === "true") {
+        if (openPJAX === "true") {
             pjaxEvent();
         }
         loadResource();

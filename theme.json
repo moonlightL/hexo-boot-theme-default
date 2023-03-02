@@ -4,9 +4,26 @@
   "extension": [
     {
       "key": "version",
-      "value": "3.3",
+      "value": "4.0",
       "type": "input",
       "label": "版本号",
+      "tab": 1,
+      "update": true
+    },
+    {
+      "key": "author",
+      "value": "MoonlightL",
+      "type": "input",
+      "label": "作者",
+      "tab": 1,
+      "update": true
+    },
+    {
+      "key": "cdn",
+      "value": "true",
+      "type": "input",
+      "label": "是否已提供CDN",
+      "tab": 1,
       "update": true
     },
     {
@@ -14,6 +31,7 @@
       "value": "9",
       "type": "input",
       "label": "页面大小",
+      "tab": 2,
       "update": false
     },
     {
@@ -22,13 +40,15 @@
       "type": "select",
       "option": "true,false",
       "label": "启用CDN",
+      "tab": 5,
       "update": false
     },
     {
       "key": "CDNAddress",
-      "value": "",
+      "value": "https://cdn.jsdelivr.net/gh/moonlightL/default@4.0",
       "type": "input",
       "label": "CDN地址",
+      "tab": 5,
       "update": false
     },
     {
@@ -37,14 +57,16 @@
       "type": "select",
       "option": "true,false",
       "label": "启用PJAX",
+      "tab": 2,
       "update": false
     },
     {
       "key": "animated",
-      "value": "false",
+      "value": "true",
       "type": "select",
       "option": "true,false",
       "label": "背景动画",
+      "tab": 2,
       "update": false
     },
     {
@@ -53,6 +75,7 @@
       "type": "select",
       "option": "true,false",
       "label": "开启哀悼",
+      "tab": 2,
       "update": false
     },
     {
@@ -61,7 +84,8 @@
       "type": "select",
       "option": "atom-one-light,atom-one-dark,github-gist",
       "label": "代码高亮主题",
-      "update": true
+      "tab": 2,
+      "update": false
     },
     {
       "key": "commentShowType",
@@ -69,6 +93,7 @@
       "type": "select",
       "option": "singleRow,multiRow",
       "label": "评论列表展示",
+      "tab": 4,
       "update": false
     },
     {
@@ -77,6 +102,7 @@
       "type": "select",
       "option": "grid,full",
       "label": "文章布局",
+      "tab": 3,
       "update": false
     }
   ]
